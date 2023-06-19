@@ -1,0 +1,43 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  .input-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+  .recipe-container {
+    margin-top: 20px;
+  }
+  
+  .recipe-container h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .recipe-container p {
+    font-size: 16px;
+  }
+  
