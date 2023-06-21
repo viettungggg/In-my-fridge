@@ -46,5 +46,35 @@ router.get('/suggestions', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+router.post('/', async (req, res) => {
+  try {
+    const { name, ingredients, instructions } = req.body;
+    const recipe = new Recipe({ name, ingredients, instructions });
+    await recipe.save();
+    res.json({ message: 'Recipe stored successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
+router.get('/', async (req, res) => {
+  try {
+    const recipes = await Recipe.find();
+    res.json(recipes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+router.delete('/:id', async (req, res) => {
+  try {
+    const recipeId = req.params.id;
+    await Recipe.findByIdAndDelete(recipeId);
+    res.json({ message: 'Recipe deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 module.exports = router;
