@@ -54,7 +54,7 @@ const IngredientInput = () => {
       {recipe && (
         <div className="recipe-container">
           <h3>Generated Recipe:</h3>
-          <p>{recipe}</p>
+          <pre>{recipe}</pre>
           <button className="button" onClick={handleStoreClick}>
             Store Recipe
           </button>

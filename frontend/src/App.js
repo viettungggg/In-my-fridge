@@ -1,42 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import IngredientInput from './components/IngredientInput';
 import RecipeDisplay from './components/StoredRecipes';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import './components/styles.css';
-// const App = () => {
-//   const [recipe, setRecipe] = useState('');
 
-//   const generateRecipe = async (ingredients) => {
-//     try {
-//       const response = await fetch(`/api/suggestions?ingredients=${ingredients}`);
-//       const data = await response.json();
-//       const generatedRecipe = data.suggestion;
-//       setRecipe(generatedRecipe);
-//     } catch (error) {
-//       console.error('Error:', error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Recipe App</h1>
-//       <IngredientInput onGenerateRecipe={generateRecipe} />
-//       <RecipeDisplay recipe={recipe} />
-//     </div>
-//   );
-// };
 const App = () => {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Generate Recipe</Link>
+        <nav className="navbar">
+          <div className="navbar-logo">
+            <img src="/logo/logo.png" className="logo-image" />
+          </div>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to="/" className="nav-link">
+                Generate Recipe
+              </Link>
             </li>
-            <li>
-              <Link to="/recipes">Show Recipes</Link>
+            <li className="nav-item">
+              <Link to="/recipes" className="nav-link">
+                Show Recipes
+              </Link>
             </li>
           </ul>
         </nav>
