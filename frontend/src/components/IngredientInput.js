@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './styles.css';
+import './IngredientInput.css';
 
 const IngredientInput = () => {
   const [ingredients, setIngredients] = useState('');

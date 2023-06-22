@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './StoredRecipes.css';
 
 const StoredRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -28,21 +29,46 @@ const StoredRecipes = () => {
     }
   };
 
+  const [expandedRecipes, setExpandedRecipes] = useState([]);
+
+  const handleToggleExpand = (recipeId) => {
+    if (expandedRecipes.includes(recipeId)) {
+      setExpandedRecipes(expandedRecipes.filter((id) => id !== recipeId));
+    } else {
+      setExpandedRecipes([...expandedRecipes, recipeId]);
+    }
+  };
+
+  const isRecipeExpanded = (recipeId) => expandedRecipes.includes(recipeId);
+
   return (
     <div>
       <h2>Stored Recipes</h2>
-      {recipes.map((recipe) => (
-        <div key={recipe._id}>
-          <h3>{recipe.name}</h3>
-          <ul>
-            <li>Ingredients: {recipe.ingredients.join(', ')}</li>
-            <li>Instructions: {recipe.instructions}</li>
-          </ul>
-          <button onClick={() => handleDeleteRecipe(recipe._id)}>Delete</button>
-        </div>
-      ))}
+      <div className="recipe-container">
+        {recipes.map((recipe) => (
+          <div className="recipe-box" key={recipe._id}>
+            <h3>{recipe.name}</h3>
+            <ul>
+              <li>
+                {isRecipeExpanded(recipe._id) ? (
+                  <pre>{recipe.instructions}</pre>
+                ) : (
+                  <pre>{recipe.instructions.slice(0, 100)}...</pre>
+                )}
+              </li>
+            </ul>
+            <div className="button-group">
+              <button onClick={() => handleToggleExpand(recipe._id)}>
+                {isRecipeExpanded(recipe._id) ? 'Show Less' : 'Show More'}
+              </button>
+              <button onClick={() => handleDeleteRecipe(recipe._id)}>Delete</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
+  
 };
 
 export default StoredRecipes;

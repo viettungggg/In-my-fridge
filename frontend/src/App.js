@@ -3,7 +3,6 @@ import IngredientInput from './components/IngredientInput';
 import RecipeDisplay from './components/StoredRecipes';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
-import './components/styles.css';
 
 const App = () => {
   return (
