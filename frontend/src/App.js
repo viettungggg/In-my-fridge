@@ -1,6 +1,7 @@
 import React from 'react';
 import IngredientInput from './components/IngredientInput';
 import RecipeDisplay from './components/StoredRecipes';
+import RecipeDetails from './components/RecipeDetails';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 
@@ -29,6 +30,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<IngredientInput />} />
           <Route path="/recipes" element={<RecipeDisplay />} />
+          <Route path="/recipes/:id" element={<RecipeDetails />} />
         </Routes>
       </div>
     </Router>

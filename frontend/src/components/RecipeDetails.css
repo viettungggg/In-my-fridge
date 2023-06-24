@@ -1,0 +1,38 @@
+.recipe-details {
+    margin: 20px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recipe-details__title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .recipe-details__section {
+    margin-bottom: 20px;
+  }
+  
+  .recipe-details__section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .recipe-details__list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recipe-details__item {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .recipe-details__instructions {
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  
