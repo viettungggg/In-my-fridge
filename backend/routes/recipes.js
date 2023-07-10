@@ -8,20 +8,24 @@ const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
   });
-console.log(process.env.OPENAI_API_KEY)
 const openai = new OpenAIApi(configuration);
 router.get('/suggestions', async (req, res) => {
   try {
     // Extract the ingredients from the request query parameters
     const { ingredients } = req.query;
 
+    // Define the prompt for generating recipe suggestions
+    const prompt = `User Query: "Can you provide a recipe using the following ingredients: ${ingredients}?"
+    Context: Your website is a recipe sharing platform. Users can search for recipes and get detailed instructions. The goal is to generate user-friendly and easy-to-follow instructions in response to recipe queries.
+    Instructions: Generate step-by-step instructions for a recipe using the given ingredients. Make the instructions beginner-friendly and use simple language. Avoid using complex culinary terms or techniques.`;
+
     // Make a request to the OpenAI API to generate recipe suggestions
     const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `I have the following ingredients in my fridge: ${ingredients}. Generate a recipe.`,
-        max_tokens: 1000,
-        temperature: 0,
-      })
+      model: "text-davinci-003",
+      prompt,
+      max_tokens: 1000,
+      temperature: 0,
+    });
 
     // Extract the generated recipe suggestion from the OpenAI API response
     const recipeSuggestion = response.data.choices[0].text.trim();
@@ -31,21 +35,10 @@ router.get('/suggestions', async (req, res) => {
   } catch (error) {
     // Handle any errors that occur during the request
     console.error(error);
-    if (error.response) {
-        // The request was made and the server responded with a status code
-        console.log('Response status:', error.response.status);
-        console.log('Response data:', error.response.data);
-    } else if (error.request) {
-        // The request was made but no response was received
-        console.log('No response received');
-    } else {
-        // Something happened in setting up the request that triggered an error
-        console.log('Error message:', error.message);
-    }
-    
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 router.post('/', async (req, res) => {
   try {
     const { name, ingredients, instructions } = req.body;
